@@ -10,18 +10,27 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # Définition d'un job nommé "build" qui s'exécute sur la dernière version d'Ubuntu disponible.
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      # Récupère le code source du dépôt pour que les étapes suivantes puissent y accéder.
+      # On utilise l'action officielle "actions/checkout" pour cloner le dépôt.
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.3'
-      
+      # Configure l'environnement PHP avec la version 8.3.
 
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress --no-suggest
+      # Installe les dépendances du projet via Composer.
+      # On accélère l'installation avec l'option --prefer-dist
+      # On évite les messages inutiles avec --no-progress et --no-suggest
 
       - name: Run tests
         run: vendor/bin/phpunit
+      # Exécute les tests unitaires définis avec PHPUnit.
+      # Si un test échoue, le job renvoie un statut “failed” et le workflow s’arrête.
