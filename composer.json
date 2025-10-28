@@ -2,7 +2,7 @@
     "name": "utilisateur/dwwm_php_ci",
     "autoload": {
         "psr-4": {
-            "Utilisateur\\DwwmPhpCi\\": "src/"
+            "Src\\": "src/"
         }
     },
     "authors": [
