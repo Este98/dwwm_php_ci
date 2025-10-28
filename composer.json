@@ -15,5 +15,10 @@
         "phpunit/phpunit": "^12.4",
         "phpstan/phpstan": "^2.1",
         "friendsofphp/php-cs-fixer": "^3.89"
+    },
+    "scripts": {
+        "test": "phpunit",
+        "stan-check": "phpstan analyse --level=5 src",
+        "cs-check": "php-cs-fixer fix --dry-run --using-cache=no --verbose"
     }
 }
