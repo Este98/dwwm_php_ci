@@ -19,6 +19,6 @@
     "scripts": {
         "test": "phpunit",
         "stan-check": "phpstan analyse --level=5 src",
-        "cs-check": "php-cs-fixer fix --dry-run --using-cache=no --verbose"
+        "cs-check": "php-cs-fixer fix --dry-run --using-cache=no --verbose --allow-risky=yes"
     }
 }
