@@ -10,7 +10,7 @@ final class MathTest extends TestCase
     public function testAdd(): void
     {
         $m = new Math();
-        $this->assertSame(5, $m->add(2, 2));
+        $this->assertSame(5, $m->add(2, 3));
     }
 
     public function testSub(): void
