@@ -1,0 +1,38 @@
+## Test PHP code style with PHP CS Fixer
+name: PHP CS Fixer
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+# Section "on" : définit les événements qui déclenchent le workflow.
+# Ici, le workflow s'exécute lors des pushs et des pull requests sur la branche "main".
+# Les tests sont automatisés avant chaque fusion de code dans la branche principale.
+# Ainsi, même si les tests fonctionnent localement, ils sont vérifiés dans l'environnement CI.
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+    # Récupère le code source du dépôt pour que les étapes suivantes puissent y accéder.
+    # On utilise l'action officielle "actions/checkout" pour cloner le dépôt.
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+    # Configure l'environnement PHP avec la version spécifiée (ici, PHP 8.3).
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest
+    # Installe les dépendances du projet définies dans le fichier composer.json.
+    # On accélère l'installation avec l'option --prefer-dist
+    # On évite les messages inutiles avec --no-progress et --no-suggest.
+
+      - name: Run PHP CS Fixer
+        run: composer cs-check
+      # Exécute CS Fixer pour vérifier la conformité du code aux normes PSR-12.
+      # Si des erreurs sont détectées, le workflow échouera, le code devra être corrigé avant la fusion.
