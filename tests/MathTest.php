@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
-use Math;
+use Src\Math;
 
 final class MathTest extends TestCase
 {
